@@ -5,4 +5,16 @@
 //  Created by King Bileygr on 8/31/21.
 //
 
-import Foundation
+import UIKit
+
+extension UICollectionView {
+    func registerCollectionViewCell(cell: UICollectionViewCell.Type) {
+        let identifier = String(describing: cell)
+        self.register(cell, forCellWithReuseIdentifier: identifier)
+    }
+    
+    func dequeueReusableCell(with cell: UICollectionViewCell.Type, indexPath: IndexPath) -> UICollectionViewCell {
+        let identifier = String(describing: cell)
+        return self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+    }
+}
