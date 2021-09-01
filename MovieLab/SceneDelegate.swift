@@ -8,6 +8,8 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    
+    let adapter = NetworkAdapter(adapter: .shared)
 
     var window: UIWindow?
 
@@ -15,8 +17,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = HomepageViewController()
+        window?.rootViewController = makeHomepageTableviewController()
         window?.makeKeyAndVisible()
+    }
+    
+    private func makeHomepageTableviewController() -> UINavigationController  {
+        let homepageVC = HomepageViewController()
+        homepageVC.loadMoviesService = adapter
+        homepageVC.navigationItem.title = "Welcome!"
+        return configureViewController(homepageVC)
+    }
+    
+    private func configureViewController (_ controller: UIViewController) -> UINavigationController {
+        let navController = UINavigationController(rootViewController: controller)
+        navController.navigationBar.prefersLargeTitles = true
+        navController.navigationItem.largeTitleDisplayMode = .always
+        return navController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
