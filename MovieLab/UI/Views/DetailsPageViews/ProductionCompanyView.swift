@@ -37,7 +37,7 @@ class CompaniesCollectionView: UIView {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.registerCollectionViewCell(cell: ActorsCollectionViewCell.self)
+        collectionView.registerCollectionViewCell(cell: CompaniesCollectionViewCell.self)
         return collectionView
     }()
     
@@ -55,7 +55,7 @@ extension CompaniesCollectionView: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(with: ActorsCollectionViewCell.self, indexPath: indexPath) as? ActorsCollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(with: CompaniesCollectionViewCell.self, indexPath: indexPath) as? CompaniesCollectionViewCell {
             let item = companiesData[indexPath.row]
             cell.configureCell(with: item)
             return cell
