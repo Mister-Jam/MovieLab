@@ -44,7 +44,6 @@ class MovieDetailsViewController: UIViewController {
     
     private func loadBackgroundImage() {
         loadImage(path: backdropImage, imageView: summaryView.movieImage)
-        
     }
     
     private func navigationBarSetup() {
@@ -94,11 +93,11 @@ class MovieDetailsViewController: UIViewController {
         let actorsView = CompaniesCollectionView()
         return actorsView
     }()
-    
+
     private func scrollViewSetup() {
         view.addSubview(scrollView)
         scrollView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height)
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: view.frame.size.height)
+        scrollView.contentSize = CGSize(width: view.width, height: view.height)
         scrollView.addMultipleSub(views: [summaryView, companiesView, detailsView])
     }
     

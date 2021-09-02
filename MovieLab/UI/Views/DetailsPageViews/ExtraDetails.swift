@@ -41,7 +41,7 @@ class MovieDetailsView: UIView {
     func configureView(with model: DetailsViewModel) {
         let releaseDate = Constants.formatText(firstText: "Release Date", secondText: "\n\(model.releaseDate)")
         let releaseStatus = Constants.formatText(firstText: "Release Status", secondText: "\n\(model.releaseStatus)")
-        let runtime = Constants.formatText(firstText: "Runtime", secondText: "\n\(model.runtime)")
+        let runtime = Constants.formatText(firstText: "Runtime", secondText: "\n\(model.runtime) mins")
         let revenue = Constants.formatText(firstText: "Revenue", secondText: "\n$\(model.revenue)")
         
         releaseDateLabel.attributedText = releaseDate
@@ -53,15 +53,15 @@ class MovieDetailsView: UIView {
     private func setupSubviews() {
         
         addMultipleSub(views: [releaseStatusLabel, releaseDateLabel, runtimeLabel, revenueLabel])
-        let labelWIdth: CGFloat = self.width * 0.7
-        let labelHeight: CGFloat = self.height * 0.2
+        let labelWIdth: CGFloat = self.width * 0.4
+        let labelHeight: CGFloat = self.height * 0.15
         releaseStatusLabel.frame = CGRect(x: 20, y: 0, width: labelWIdth, height: labelHeight)
         
         releaseDateLabel.frame = CGRect(x: 20, y: releaseStatusLabel.bottom, width: labelWIdth, height: labelHeight)
         
-        runtimeLabel.frame = CGRect(x: 20, y: releaseDateLabel.bottom, width: labelWIdth, height: labelHeight)
+        runtimeLabel.frame = CGRect(x: releaseStatusLabel.right+20, y: 0, width: labelWIdth, height: labelHeight)
         
-        revenueLabel.frame = CGRect(x: 20, y: runtimeLabel.bottom, width: labelWIdth, height: labelHeight)
+        revenueLabel.frame = CGRect(x: releaseDateLabel.right+20, y: releaseStatusLabel.bottom, width: labelWIdth, height: labelHeight)
     }
     
 }
