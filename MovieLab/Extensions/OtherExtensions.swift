@@ -10,7 +10,7 @@ import Foundation
 extension URLSession {
         //MARK: Get Data From a URL Session
         //MARK: Decode Data Gotten From a URL Session
-        func decodeData<T: Decodable> (from url: URLRequest, type: T.Type,
+        func decodeData<T: Decodable> (from url: URL, type: T.Type,
                                        keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy     = .useDefaultKeys,
                                        dataDecodingStrategy: JSONDecoder.DataDecodingStrategy   = .deferredToData,
                                        completion: @escaping ((Result<T, Error>)->Void)
@@ -21,7 +21,7 @@ extension URLSession {
                     completion(.failure(apiError!))
                     return }
                 let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy     = keyDecodingStrategy
+                decoder.keyDecodingStrategy     = .convertFromSnakeCase
                 decoder.dataDecodingStrategy    = dataDecodingStrategy
                 do {
                     let decodedData = try decoder.decode(T.self, from: apiData)
